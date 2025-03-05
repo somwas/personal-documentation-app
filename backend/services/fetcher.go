@@ -2,15 +2,15 @@ package services
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
-const githubRawURL = "https://raw.githubusercontent.com/sam301100/%s/main/%s.md" //create .md files
+// Replace this with your actual GitHub raw URL
+const githubRawURL = "https://raw.githubusercontent.com/sam301100/Java-doc-repo/refs/heads/master/java_doc.md"
 
-func FetchMarkdown(repo string) (string, error) {
-	url := fmt.Sprintf(githubRawURL, repo, repo+"_doc")
-	resp, err := http.Get(url)
+func FetchMarkdown() (string, error) {
+	resp, err := http.Get(githubRawURL)
 	if err != nil {
 		return "", err
 	}
@@ -20,7 +20,8 @@ func FetchMarkdown(repo string) (string, error) {
 		return "", fmt.Errorf("GitHub returned status: %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	// Use io.ReadAll() instead of ioutil.ReadAll()
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}

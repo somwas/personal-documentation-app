@@ -10,12 +10,13 @@ import (
 )
 
 func main() {
+	// Create a new router
 	r := mux.NewRouter()
 
-	// Define API routes
-	r.HandleFunc("/docs/java", handlers.FetchAndConvertDoc).Methods("GET")
+	// API route to fetch and display the markdown file
+	r.HandleFunc("/docs", handlers.FetchAndConvertDoc).Methods("GET")
 
 	// Start the server
-	log.Println("Server running on :8080")
+	log.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
