@@ -1,17 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Docs from "./pages/Docs";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [text, setText] = useState<string>("Loading...");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/docs")
+      .then((response) => setText(response.data))
+      .catch(() => setText("Failed to load documentation."));
+  }, []);
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/docs/:topic" element={<Docs />} />
-      </Routes>
-    </Router>
+    <div className="text-center text-xl font-bold p-4">
+      {text}
+    </div>
   );
 }
 
