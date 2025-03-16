@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-blue-500 text-white flex items-center justify-center h-screen;
+/* Add styling for markdown content */
+.prose h1 {
+  @apply text-3xl font-bold mb-4 mt-8;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold mb-3 mt-6;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold mb-2 mt-5;
+}
+
+.prose p {
+  @apply mb-4 text-gray-800;
+}
+
+.prose ul {
+  @apply list-disc pl-5 mb-4;
+}
+
+.prose ol {
+  @apply list-decimal pl-5 mb-4;
+}
+
+.prose code {
+  @apply bg-gray-100 text-red-600 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-800 text-white p-4 rounded mb-4 overflow-x-auto;
 }
